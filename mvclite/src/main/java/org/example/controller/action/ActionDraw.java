@@ -24,17 +24,18 @@ public class ActionDraw implements ActionInterface{
     public ActionDraw() {
 
         p = new Point2D[2];
-        sampleShape = new MyShape(Color.BLUE, new Ellipse2D.Double());
+        sampleShape = new MyShape(Color.BLACK, new Ellipse2D.Double());
     }
 
     public ActionDraw(  Model model) {
         shape = new MyShape();
         this.p = new Point2D[2];
         this.model = model;
-        sampleShape = new MyShape(Color.BLUE, new Ellipse2D.Double());
+        sampleShape = new MyShape(Color.BLACK, new Ellipse2D.Double());
     }
 
     public void setShape(MyShape shape) {
+
         this.shape = shape;
     }
     public void stretchShape(Point point){
@@ -44,7 +45,7 @@ public class ActionDraw implements ActionInterface{
     public void createShape(Point point){
         p[0] = (Point2D)point;
         shape = sampleShape.clone();
-        model.createCurrentShape(shape);
+        model.addShape(shape);
     }
 
 

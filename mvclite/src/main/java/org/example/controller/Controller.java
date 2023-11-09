@@ -18,28 +18,25 @@ public class Controller {
     Model model;
     MyPanel panel;
     MyFrame frame;
-    ActionInterface actionInterface;
+    State state;
 
     public Controller() {
         model = new Model();
+        state = new State(model);
         model.setCurrentShape(new MyShape());
         panel = new MyPanel(this);
-        frame = new MyFrame(panel);
-        actionInterface = new ActionDraw(model);
-        frame.setController(this);
+        frame = new MyFrame(panel,state);
+
     }
 
-    public void setActionInterface(ActionInterface actionInterface) {
-        this.actionInterface = actionInterface;
-        actionInterface.setModel(model);
-    }
+
 
     public void mousePressed(Point point) {
-        actionInterface.mousePressed(point);
+        state.getActionInterface().mousePressed(point);
     }
 
     public void mouseDragget(Point point) {
-        actionInterface.mouseDragget(point);
+        state.getActionInterface().mouseDragget(point);
     }
 
     public Collection<MyShape> translate() {

@@ -1,7 +1,7 @@
 package org.example.model;
 
 import java.awt.*;
-import java.awt.geom.Line2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
@@ -14,23 +14,40 @@ public class MyShape {
     public MyShape(Color color, RectangularShape shape) {
         this.color = color;
         this.shape = shape;
-        this.fillBehavior = FillBehavior.NOFILL;
+        this.fillBehavior = FillBehavior.FILL;
     }
 
     public MyShape() {
-        color = Color.BLACK;
-        shape = new Rectangle2D.Double();
-        this.fillBehavior = FillBehavior.NOFILL;
+        color = Color.RED;
+        shape = new Ellipse2D.Double();
+        this.fillBehavior = FillBehavior.FILL;
     }
-    public void setFrame(Point2D [] p){
-        shape.setFrameFromDiagonal(p[0],p[1]);
+
+    public void setcolor(Color c) {
+        this.color = c;
     }
-    public void draw(Graphics2D g){
+
+    public RectangularShape getShape() {
+        return shape;
+    }
+
+    public void setShape(RectangularShape shape) {
+
+        this.shape = shape;
+    }
+
+    public void addShape(Point2D[] p) {
+
+        shape.setFrameFromDiagonal(p[0], p[1]);
+    }
+
+    public void draw(Graphics2D g) {
         Paint paint = g.getPaint();
         g.setColor(color);
-        fillBehavior.draw(g,shape);
+        fillBehavior.draw(g, shape);
         g.setPaint(paint);
     }
+
     public Color getColor() {
         return color;
     }
@@ -39,21 +56,19 @@ public class MyShape {
         this.color = color;
     }
 
-    public RectangularShape getShape() {
-        return shape;
-    }
-
-    public void setShape(RectangularShape shape) {
-        this.shape = shape;
-    }
-
-    public FillBehavior getFillBehavior() {
+    public FillBehavior getFillBih() {
         return fillBehavior;
     }
 
-    public void setFillBehavior(FillBehavior fillBehavior) {
+    public void setFrame(Point2D[] p) {
+        shape.setFrameFromDiagonal(p[0], p[1]);
+    }
+
+
+    public void setFillBih(FillBehavior fillBehavior) {
         this.fillBehavior = fillBehavior;
     }
+
     public MyShape clone() {
         MyShape s = new MyShape();
         s.setColor(this.color);
